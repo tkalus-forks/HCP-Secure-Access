@@ -71,15 +71,14 @@ variable "auth_method_id" {
   type = string
 }
 
-#7/11/2026 Commnet out as I do not need for the worker workspace
-#variable "password_auth_method_login_name" {
-#  type = string
-#}
+variable "password_auth_method_login_name" {
+  type = string
+}
 
-#variable "password_auth_method_password" {
-#  type      = string
-#  sensitive = true
-#}
+variable "password_auth_method_password" {
+  type      = string
+  sensitive = true
+}
 
 variable "vault_addr" {
   type = string
