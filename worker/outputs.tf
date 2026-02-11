@@ -38,15 +38,15 @@ output "rdp_credential_library_id" {
 # AWS networking outputs
 ############################################
 
-output "vpc_id" {
-  description = "VPC ID used by Boundary targets"
-  value       = aws_vpc.main.id
-}
+#output "vpc_id" {
+#  description = "VPC ID used by Boundary targets"
+#  value       = aws_vpc.main.id
+3}
 
-output "public_subnet_ids" {
-  description = "Public subnet IDs for target instances"
-  value       = aws_subnet.public[*].id
-}
+#output "public_subnet_ids" {
+#  description = "Public subnet IDs for target instances"
+#  value       = aws_subnet.public[*].id
+#}
 
 # Optional if you also have private targets
 # output "private_subnet_ids" {
