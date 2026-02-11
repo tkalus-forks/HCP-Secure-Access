@@ -12,12 +12,12 @@ resource "vault_database_secret_backend_connection" "postgres" {
   name              = "demo-postgres"
   allowed_roles     = ["*"]
   verify_connection = false
-  postgresql {
-    connection_url       = "postgresql://{{username}}:{{password}}@${aws_db_instance.boundary_demo.endpoint}/${var.db_name}?sslmode=disable"
-    username             = var.db_username
-    password             = var.db_password
-    max_open_connections = 5
-  }
+  #postgresql {
+  #  connection_url       = "postgresql://{{username}}:{{password}}@${aws_db_instance.boundary_demo.endpoint}/${var.db_name}?sslmode=disable"
+  #  username             = var.db_username
+  #  password             = var.db_password
+  #  max_open_connections = 5
+  #}
 }
 resource "vault_database_secret_backend_role" "dba" {
   backend = vault_mount.postgres_database.path
