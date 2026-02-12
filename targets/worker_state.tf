@@ -24,7 +24,7 @@ locals {
 
   boundary_db_demo_subnet_id  = data.terraform_remote_state.worker.outputs.boundary_db_demo_subnet_id
   boundary_db_demo_subnet2_id = data.terraform_remote_state.worker.outputs.boundary_db_demo_subnet2_id
-  allow_all_sg_id             = data.terraform_remote_state.worker.outputs.allow_all_sg_id
+  #allow_all_sg_id             = data.terraform_remote_state.worker.outputs.allow_all_sg_id
 
   #New secure SG output (use this for EC2 + Windows targets)
   boundary_target_sg_id = data.terraform_remote_state.worker.outputs.boundary_target_sg_id
