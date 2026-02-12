@@ -22,6 +22,7 @@ resource "aws_db_instance" "boundary_demo" {
   vpc_security_group_ids = [local.rds_sg_id]
 
   //parameter_group_name   = aws_db_parameter_group.boundary_demo_db_subnet_group.name
-  publicly_accessible = true
+  #publicly_accessible = true
+  publicly_accessible = false
   skip_final_snapshot = true
 }

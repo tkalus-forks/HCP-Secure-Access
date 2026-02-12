@@ -3,18 +3,26 @@ data "http" "current" {
   url = "https://api.ipify.org"
 }
 
-# These SG rules need tidying up!
-resource "aws_security_group" "allow_all" {
-  name        = "Lazy allow all"
-  description = "Allow all - DEMO PURPOSES"
-  vpc_id      = aws_vpc.boundary_db_demo_vpc.id
+resource "aws_security_group" "boundary_target" {
+  name   = "boundary-managed-targets"
+  vpc_id = aws_vpc.boundary_db_demo_vpc.id
 
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = -1
-    cidr_blocks = ["0.0.0.0/0"]
+    description     = "SSH from Boundary Worker"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.boundary_ingress_worker_ssh.id]
   }
+
+  ingress {
+    description     = "RDP from Boundary Worker"
+    from_port       = 3389
+    to_port         = 3389
+    protocol        = "tcp"
+    security_groups = [aws_security_group.boundary_ingress_worker_ssh.id]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -23,13 +31,10 @@ resource "aws_security_group" "allow_all" {
   }
 
   tags = {
-    Name = "allow_all"
+    Name = "boundary-target-sg"
   }
-
- # lifecycle {
- #   prevent_destroy = true
- # }
 }
+
 
 resource "aws_security_group" "boundary_ingress_worker_ssh" {
   name        = "boundary_ingress_worker_allow_ssh_9202"

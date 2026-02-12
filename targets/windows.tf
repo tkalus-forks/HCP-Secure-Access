@@ -26,7 +26,9 @@ resource "aws_instance" "rdp_target" {
   #subnet_id                   = aws_subnet.boundary_db_demo_subnet.id
   #vpc_security_group_ids      = [aws_security_group.allow_all.id]
   subnet_id              = local.boundary_db_demo_subnet_id
-  vpc_security_group_ids = [local.allow_all_sg_id]
+  #vpc_security_group_ids = [local.allow_all_sg_id]
+  vpc_security_group_ids = [local.boundary_target_sg_id]
+
 
   monitoring                  = true
   get_password_data           = true                      # <-- ADD
