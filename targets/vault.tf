@@ -5,16 +5,16 @@ resource "vault_mount" "kv_rdp" {
   description = "KV v1 for Boundary RDP credentials (flat username/password)"
 }
 
-#resource "vault_generic_secret" "rdp_admin" {
-#  path = "${var.vault_kv_mount_path}/${var.vault_kv_secret_path}" # kv-rdp/boundary/rdp/svc
+resource "vault_generic_secret" "rdp_admin" {
+  path = "${var.vault_kv_mount_path}/${var.vault_kv_secret_path}" # kv-rdp/boundary/rdp/svc
 
-#  data_json = jsonencode({
-#    username = "Administrator"
-#    password = local.admin_password
-#  })
+  data_json = jsonencode({
+    username = "Administrator"
+    password = local.admin_password
+  })
 
-#  depends_on = [vault_mount.kv_rdp]
-#}
+  depends_on = [vault_mount.kv_rdp]
+}
 
 
 
