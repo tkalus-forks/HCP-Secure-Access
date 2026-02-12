@@ -152,11 +152,11 @@ resource "boundary_host_set_plugin" "aws_dev" {
   preferred_endpoints   = ["cidr:0.0.0.0/0"]
   attributes_json       = jsonencode({ "filters" = "tag:application=dev" })
   sync_interval_seconds = 30
-  depends_on = [
-    boundary_worker.self_managed_pki_worker,
-    boundary_host_catalog_plugin.aws_plugin,
-    boundary_worker.self_managed_pki_worker
-  ]
+  #depends_on = [
+  #  boundary_worker.self_managed_pki_worker,
+  #  boundary_host_catalog_plugin.aws_plugin,
+  #  boundary_worker.self_managed_pki_worker
+  #]
 }
 
 resource "boundary_host_set_plugin" "aws_prod" {
@@ -165,11 +165,11 @@ resource "boundary_host_set_plugin" "aws_prod" {
   preferred_endpoints   = ["cidr:0.0.0.0/0"]
   attributes_json       = jsonencode({ "filters" = "tag:application=production" })
   sync_interval_seconds = 30
-  depends_on = [
-    boundary_worker.self_managed_pki_worker,
-    boundary_host_catalog_plugin.aws_plugin,
-    boundary_worker.self_managed_pki_worker
-  ]
+  #depends_on = [
+  #  boundary_worker.self_managed_pki_worker,
+  #  boundary_host_catalog_plugin.aws_plugin,
+  #  boundary_worker.self_managed_pki_worker
+  #]
 }
 
 resource "boundary_target" "aws" {
