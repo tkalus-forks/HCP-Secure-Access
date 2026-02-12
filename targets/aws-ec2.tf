@@ -45,8 +45,10 @@ EOF
 }
 
 resource "aws_network_interface" "boundary_public_target_ni" {
-  subnet_id               = aws_subnet.boundary_db_demo_subnet.id
-  security_groups         = [aws_security_group.allow_all.id]
+  #subnet_id               = aws_subnet.boundary_db_demo_subnet.id
+  #security_groups         = [aws_security_group.allow_all.id]
+  subnet_id       = local.boundary_db_demo_subnet_id
+  security_groups = [local.allow_all_sg_id]
   private_ip_list_enabled = false
 }
 

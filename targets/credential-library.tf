@@ -24,7 +24,8 @@ resource "boundary_credential_store_vault" "vault_cred_store" {
   address     = var.vault_addr
   token       = vault_token.boundary_vault_token.client_token
   namespace   = "admin"
-  scope_id    = boundary_scope.project.id
+  #scope_id    = boundary_scope.project.id
+  scope_id    = local.project_scope_id
   depends_on  = [vault_token.boundary_vault_token]
 }
 
@@ -50,7 +51,8 @@ resource "boundary_credential_library_vault_ssh_certificate" "vault_ssh_cert" {
 resource "boundary_credential_store_static" "boundary_cred_store" {
   name        = "boundary-credential-store"
   description = "Boundary Credential Store"
-  scope_id    = boundary_scope.project.id
+  #scope_id    = boundary_scope.project.id
+  scope_id    = local.project_scope_id
 }
 
 #commnwr out 9-25-2025
@@ -130,7 +132,8 @@ resource "boundary_credential_store_vault" "vault_cred_store" {
   address     = var.vault_addr
   token       = vault_token.boundary_vault_token.client_token
   namespace   = "admin"
-  scope_id    = boundary_scope.project.id
+  #scope_id    = boundary_scope.project.id
+  scope_id    = local.project_scope_id
   depends_on  = [vault_token.boundary_vault_token]
 }
 
@@ -156,7 +159,8 @@ resource "boundary_credential_library_vault_ssh_certificate" "vault_ssh_cert" {
 resource "boundary_credential_store_static" "boundary_cred_store" {
   name        = "boundary-credential-store"
   description = "Boundary Credential Store"
-  scope_id    = boundary_scope.project.id
+  #scope_id    = boundary_scope.project.id
+  scope_id    = local.project_scope_id
 }
 
 #commnwr out 9-25-2025

@@ -9,7 +9,8 @@
 resource "boundary_host_catalog_plugin" "aws_plugin" {
   name        = "aws-dynamic-host-catalog"
   description = "AWS EC2 dynamic discovery via Boundary plugin"
-  scope_id   = boundary_scope.project.id
+  #scope_id   = boundary_scope.project.id
+  scope_id   = local.project_scope_id
   plugin_name = "aws"
 
   # REQUIRED for AssumeRole in HCP: route catalog ops to the AWS worker
@@ -84,7 +85,8 @@ resource "boundary_host_catalog_plugin" "aws_plugin" {
 resource "boundary_host_catalog_plugin" "aws_plugin" {
   name            = "ws-dynamic-host-catalog"
   description     = "Host catalog in AWS Sandbox"
-  scope_id        = boundary_scope.project.id
+  #scope_id        = boundary_scope.project.id
+  scope_id        = local.project_scope_id
   plugin_name     = "aws"
   attributes_json = jsonencode({
   #removed 1-26-2026
@@ -173,7 +175,8 @@ resource "boundary_target" "aws" {
   name                     = "aws-ec2"
   description              = "AWS EC2 Target"
   egress_worker_filter     = " \"self-managed-aws-worker\" in \"/tags/type\" "
-  scope_id                 = boundary_scope.project.id
+  #scope_id                 = boundary_scope.project.id
+  scope_id                 = local.project_scope_id
   session_connection_limit = -1
   default_port             = 22
   host_source_ids = [

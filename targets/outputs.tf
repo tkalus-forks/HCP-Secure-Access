@@ -110,3 +110,13 @@ output "boundary_rdp_host_set_id" {
 #  value       = try(data.tfe_outputs.worker.values.rdp_credential_library_id, null)
 #}
 
+output "boundary_ssh_target_id" {
+  description = "Boundary target ID for SSH"
+  value       = try(boundary_target.aws.id, null)
+}
+
+output "boundary_db_target_id" {
+  description = "Boundary target ID for DB"
+  value       = try(boundary_target.dba.id, null)
+}
+

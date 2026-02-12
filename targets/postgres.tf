@@ -1,5 +1,6 @@
 resource "aws_db_subnet_group" "boundary_demo_db_subnet_group" {
-  subnet_ids = [aws_subnet.boundary_db_demo_subnet.id, aws_subnet.boundary_db_demo_subnet2.id]
+  #subnet_ids = [aws_subnet.boundary_db_demo_subnet.id, aws_subnet.boundary_db_demo_subnet2.id]
+  subnet_ids = [local.boundary_db_demo_subnet_id, local.boundary_db_demo_subnet2_id]
 
   tags = {
     "Name" = "Boundary DB Demo"

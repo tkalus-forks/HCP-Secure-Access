@@ -12,7 +12,8 @@ resource "boundary_target" "rdp" {
   name                     = "aws-windows"
   description              = "AWS Windows Target"
   egress_worker_filter     = " \"self-managed-aws-worker\" in \"/tags/type\" "
-  scope_id                 = boundary_scope.project.id
+  #scope_id                 = boundary_scope.project.id
+  scope_id                 = local.project_scope_id
   #session_connection_limit = 1
   default_port             = 3390
   default_client_port      = 3389
