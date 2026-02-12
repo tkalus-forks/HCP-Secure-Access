@@ -1,6 +1,7 @@
 #Boundary config for the Postgres DB target
 resource "boundary_host_catalog_static" "db_host_catalog" {
-  scope_id = boundary_scope.project.id
+  #scope_id = boundary_scope.project.id
+  scope_id = local.project_scope_id
 }
 
 resource "boundary_host_static" "postgres_host" {
@@ -21,7 +22,9 @@ resource "boundary_target" "dba" {
   name                     = "aws-rds"
   description              = "AWS RDS Target"
   egress_worker_filter     = " \"self-managed-aws-worker\" in \"/tags/type\" "
-  scope_id                 = boundary_scope.project.id
+#  scope_id                 = boundary_scope.project.id
+  scope_id = local.project_scope_id
+
   session_connection_limit = 3600
   default_port             = 5432
   host_source_ids = [

@@ -67,3 +67,13 @@ output "project_scope_id" {
 #   value = aws_security_group.boundary_worker.id
 # }
 
+output "org_scope_id" {
+  description = "Boundary org scope ID used by targets workspace"
+  value       = boundary_scope.org.id
+}
+
+output "project_scope_id" {
+  description = "Boundary project scope ID used by targets workspace"
+  value       = boundary_scope.project.id
+}
+

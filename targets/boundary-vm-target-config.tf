@@ -50,17 +50,17 @@ resource "boundary_host_catalog_plugin" "aws_plugin" {
   # Ensure IAM user + key exist first
   ##########################################
 #  depends_on = [time_sleep.boundary_dynamic_host_catalog_user_ready]
-  depends_on = [
-    time_sleep.wait_for_worker_registration,
-    aws_instance.boundary_self_managed_worker,
-    aws_iam_role_policy.boundary_worker_ec2_read,
-    aws_iam_role_policy.boundary_discovery_policy,
-    aws_iam_role_policy.worker_assume_discovery_policy
+#  depends_on = [
+   # time_sleep.wait_for_worker_registration,
+   # aws_instance.boundary_self_managed_worker,
+   # aws_iam_role_policy.boundary_worker_ec2_read,
+   # aws_iam_role_policy.boundary_discovery_policy,
+   # aws_iam_role_policy.worker_assume_discovery_policy
  #aws_instance.boundary_self_managed_worker,
  #   aws_iam_role_policy.boundary_worker_ec2_read,
  #   aws_iam_role_policy.boundary_discovery_policy,
  #   aws_iam_role_policy.worker_assume_discovery_policy
-  ]
+ # ]
 }
 
 #commnet out 2/3/2026
@@ -188,7 +188,8 @@ resource "boundary_target" "aws" {
 }
 
 resource "boundary_policy_storage" "strict_storage_policy" {
-  scope_id          = boundary_scope.org.id
+  #scope_id          = boundary_scope.org.id
+  scope_id          = local.org_scope_id
   delete_after_days = 1
   retain_for_days   = 0
   name              = "strictdeletepolicy"
@@ -197,5 +198,6 @@ resource "boundary_policy_storage" "strict_storage_policy" {
 
 resource "boundary_scope_policy_attachment" "policy_attachment" {
   policy_id = boundary_policy_storage.strict_storage_policy.id
-  scope_id  = boundary_scope.org.id
+  #scope_id  = boundary_scope.org.id
+  scope_id  = local.org_scope_id
 }
