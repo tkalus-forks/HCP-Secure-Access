@@ -139,11 +139,11 @@ resource "boundary_host_set_plugin" "aws_db" {
   preferred_endpoints   = ["cidr:0.0.0.0/0"]
   attributes_json       = jsonencode({ "filters" = "tag:service-type=database" })
   sync_interval_seconds = 30
-  depends_on = [
-    boundary_worker.self_managed_pki_worker,
-    boundary_host_catalog_plugin.aws_plugin,
-    boundary_worker.self_managed_pki_worker
-  ]
+  #depends_on = [
+  #  boundary_worker.self_managed_pki_worker,
+  #  boundary_host_catalog_plugin.aws_plugin,
+  #  boundary_worker.self_managed_pki_worker
+  #]
 }
 
 resource "boundary_host_set_plugin" "aws_dev" {
