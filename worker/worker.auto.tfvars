@@ -1,5 +1,3 @@
-tfc_vault_dynamic_credentials = true
-
 aws_region = "us-east-1"
 availability_zone = "us-east-1a"
 availability_zone2 = "us-east-1b"
