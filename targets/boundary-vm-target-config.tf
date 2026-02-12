@@ -21,9 +21,6 @@ resource "boundary_host_catalog_plugin" "aws_plugin" {
   ##########################################
   attributes_json = jsonencode({
     region = var.aws_region
-    #add so only uses private IP
-    use_private_ip = true
-    use_public_ip  = false
 
     #role_arn = aws_iam_role.boundary_discovery_role.arn
     role_arn = local.boundary_discovery_role_arn
@@ -139,40 +136,46 @@ resource "boundary_host_catalog_plugin" "aws_plugin" {
 resource "boundary_host_set_plugin" "aws_db" {
   name                  = "AWS DB Host Set Plugin"
   host_catalog_id       = boundary_host_catalog_plugin.aws_plugin.id
-  preferred_endpoints   = ["cidr:0.0.0.0/0"]
-  attributes_json       = jsonencode({ "filters" = "tag:service-type=database" })
+  #preferred_endpoints   = ["cidr:0.0.0.0/0"]
+  #attributes_json       = jsonencode({ "filters" = "tag:service-type=database" })
+  attributes_json = jsonencode({
+    filters = ["tag:service-type=database"]
+  })
+
+
+  preferred_endpoints = ["private_ip"]
+
   sync_interval_seconds = 30
-  #depends_on = [
-  #  boundary_worker.self_managed_pki_worker,
-  #  boundary_host_catalog_plugin.aws_plugin,
-  #  boundary_worker.self_managed_pki_worker
-  #]
 }
 
 resource "boundary_host_set_plugin" "aws_dev" {
   name                  = "AWS Dev Host Set Plugin"
   host_catalog_id       = boundary_host_catalog_plugin.aws_plugin.id
-  preferred_endpoints   = ["cidr:0.0.0.0/0"]
-  attributes_json       = jsonencode({ "filters" = "tag:application=dev" })
+  #preferred_endpoints   = ["cidr:0.0.0.0/0"]
+  #attributes_json       = jsonencode({ "filters" = "tag:application=dev" })
+  attributes_json = jsonencode({
+    filters = ["tag:application=dev"]
+  })
+
+
+
+  preferred_endpoints = ["private_ip"]
+
   sync_interval_seconds = 30
-  #depends_on = [
-  #  boundary_worker.self_managed_pki_worker,
-  #  boundary_host_catalog_plugin.aws_plugin,
-  #  boundary_worker.self_managed_pki_worker
-  #]
 }
 
 resource "boundary_host_set_plugin" "aws_prod" {
   name                  = "AWS Prod Host Set Plugin"
   host_catalog_id       = boundary_host_catalog_plugin.aws_plugin.id
-  preferred_endpoints   = ["cidr:0.0.0.0/0"]
-  attributes_json       = jsonencode({ "filters" = "tag:application=production" })
+  #preferred_endpoints   = ["cidr:0.0.0.0/0"]
+  #attributes_json       = jsonencode({ "filters" = "tag:application=production" })
+  attributes_json = jsonencode({
+    filters = ["tag:application=production"]
+  })
+
+  preferred_endpoints = ["private_ip"]
+
   sync_interval_seconds = 30
-  #depends_on = [
-  #  boundary_worker.self_managed_pki_worker,
-  #  boundary_host_catalog_plugin.aws_plugin,
-  #  boundary_worker.self_managed_pki_worker
-  #]
 }
 
 resource "boundary_target" "aws" {
