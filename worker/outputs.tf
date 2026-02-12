@@ -2,10 +2,10 @@
 # Boundary scope outputs
 ############################################
 
-output "project_scope_id" {
-  description = "Boundary project scope ID used by targets workspace"
-  value       = boundary_scope.project.id
-}
+#output "project_scope_id" {
+#  description = "Boundary project scope ID used by targets workspace"
+#  value       = boundary_scope.project.id
+#}
 
 ############################################
 # Boundary AWS host catalog (plugin)
