@@ -67,16 +67,16 @@ output "boundary_rdp_target_id" {
 }
 
 # SSH target (if defined in targets/)
-output "boundary_ssh_target_id" {
-  description = "Boundary target ID for SSH"
-  value       = try(boundary_target.ssh.id, null)
-}
+#output "boundary_ssh_target_id" {
+#  description = "Boundary target ID for SSH"
+#  value       = try(boundary_target.ssh.id, null)
+#}
 
 # DB target (if defined in targets/)
-output "boundary_db_target_id" {
-  description = "Boundary target ID for DB"
-  value       = try(boundary_target.db.id, null)
-}
+#output "boundary_db_target_id" {
+#  description = "Boundary target ID for DB"
+#  value       = try(boundary_target.db.id, null)
+#}
 
 # Host sets (if defined in targets/)
 output "boundary_rdp_host_set_id" {
