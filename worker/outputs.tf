@@ -96,9 +96,9 @@ output "boundary_db_demo_subnet2_id" {
   value = aws_subnet.boundary_db_demo_subnet2.id
 }
 
-output "allow_all_sg_id" {
-  value = aws_security_group.allow_all.id
-}
+#output "allow_all_sg_id" {
+#  value = aws_security_group.allow_all.id
+#}
 
 output "rds_sg_id" {
   value = aws_security_group.rds.id
