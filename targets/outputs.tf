@@ -120,3 +120,12 @@ output "boundary_db_target_id" {
   value       = try(boundary_target.dba.id, null)
 }
 
+#TMP:
+utput "boundary_vault_token" {
+  value     = vault_token.boundary_vault_token.client_token
+  sensitive = true
+}
+
+output "boundary_vault_token_policies" {
+  value = vault_token.boundary_vault_token.policies
+}
