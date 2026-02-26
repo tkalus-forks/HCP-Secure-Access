@@ -21,7 +21,7 @@ resource "boundary_target" "dba" {
   type                     = "tcp"
   name                     = "aws-rds"
   description              = "AWS RDS Target"
-  egress_worker_filter     = " \"self-managed-aws-worker\" in \"/tags/type\" "
+  #egress_worker_filter     = " \"self-managed-aws-worker\" in \"/tags/type\" "
 #  scope_id                 = boundary_scope.project.id
   scope_id = local.project_scope_id
 
@@ -33,6 +33,7 @@ resource "boundary_target" "dba" {
 
   #added ingress worker filter 2/26/2026
   ingress_worker_filter = "\"self-managed-aws-worker\" in \"/tags/type\""
+  egress_worker_filter  = "\"self-managed-aws-worker\" in \"/tags/type\""
 
   brokered_credential_source_ids = [
     boundary_credential_library_vault.vault_cred_lib.id
